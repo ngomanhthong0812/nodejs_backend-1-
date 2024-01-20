@@ -8,29 +8,35 @@
   </head>
   <body>
     <div class="topnav">
-      <a class="active" href="#home">Home</a>
-      <a href="#news">News</a>
-      <a href="#contact">Contact</a>
-      <a href="#about">About</a>
+      <a class="active" href="/">Home</a>
+      <a href="/create">Create-user</a>
     </div>
 
-    <form action="/create-user" method="post" class="form-add-new">
-      <fieldset>
-        <legend>Add new users:</legend>
-        <div class="input-group">
-          <label for="email">Email:</label>
-          <input type="text" name="email" /><br /><br />
-        </div>
-        <div class="input-group">
-          <label for="name">name:</label>
-          <input type="text" name="name" /><br /><br />
-        </div>
-        <div class="input-group">
-          <label for="city">City:</label>
-          <input type="text" name="city" /><br /><br />
-        </div>
-        <input type="submit" value="save" />
-      </fieldset>
-    </form>
+    <div class="list-user">
+      <h2>List user</h2>
+      <table>
+        <tr>
+          <th>Id</th>
+          <th>Email</th>
+          <th>Name</th>
+          <th>City</th>
+          <th>Actions</th>
+        </tr>
+        <% listUsers.forEach(item => { %>
+        <tr>
+          <td><%= item.id %></td>
+          <td><%= item.email %></td>
+          <td><%= item.name %></td>
+          <td><%= item.city %></td>
+          <td>
+            <a href="/edit/<%= item.id %>">edit</a>
+            <form action="/delete/<%= item.id %>" method="get">
+              <Button>Delete</Button>
+            </form>
+          </td>
+        </tr>
+        <% }); %>
+      </table>
+    </div>
   </body>
 </html>
